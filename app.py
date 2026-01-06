@@ -50,29 +50,6 @@ import gc
 #     "densenet": densenet,
 #     "nasnet": nasnet}
 
-#option 2
-# Create a mapping of "UI Name" to "Keras Module Name"
-# This list covers the most common transfer learning models
-MODEL_OPTIONS = {
-    "No Transfer Learning (Custom Model)": None,
-    "EfficientNet (B0-B7)": "efficientnet",
-    "EfficientNet V2": "efficientnet_v2",
-    "MobileNet": "mobilenet",
-    "MobileNet V2": "mobilenet_v2",
-    "ResNet50": "resnet50",
-    "ResNet (Other)": "resnet",
-    "ResNet V2": "resnet_v2",
-    "VGG16": "vgg16",
-    "VGG19": "vgg19",
-    "Xception": "xception",
-    "Inception V3": "inception_v3",
-    "DenseNet": "densenet",
-    "NASNet": "nasnet"
-}
-
-st.write("### Model Configuration")
-selected_model_label = st.selectbox("Which base model did you use?", options=list(MODEL_OPTIONS.keys()))
-selected_module_name = MODEL_OPTIONS[selected_model_label]
 
 # ==== CONFIGURATION ====
 TEST_IMAGE_DIR = "test_images"
@@ -295,9 +272,37 @@ st.markdown("")
 
 st.markdown(
     "Upload your trained `.keras` model, and we’ll run it on our secret set of sign language photos. Once your model's evaluated, your score pops up on the leaderboard. Top the table, and those bragging rights are all yours! 🏆\n\n"
-    "You can use almost any image size: 64×64, 128×128, 224×224, 256×256.Just make sure your model expects standard 3-channel (RGB) colour images."
+    "You can use almost any image size: 64×64, 128×128, 224×224, 256×256.Just make sure your model expects standard 3-channel (RGB) colour images.\n\n"
+    "Notice: if you used Transfer Learning, this interface supports the following SOTA models: `EfficientNet (B0-B7)` `EfficientNet V2` `MobileNet` `MobileNet V2` `ResNet50` `ResNet V2` `VGG16` `VGG19` `DenseNet`"
 )
 st.markdown("")
+
+#option 2
+# Create a mapping of "UI Name" to "Keras Module Name"
+# This list covers the most common transfer learning models
+MODEL_OPTIONS = {
+    "No Transfer Learning (Custom Model)": None,
+    "EfficientNet (B0-B7)": "efficientnet",
+    "EfficientNet V2": "efficientnet_v2",
+    "MobileNet": "mobilenet",
+    "MobileNet V2": "mobilenet_v2",
+    "ResNet50": "resnet50",
+#    "ResNet (Other)": "resnet",
+    "ResNet V2": "resnet_v2",
+    "VGG16": "vgg16",
+    "VGG19": "vgg19",
+#    "Xception": "xception",
+#    "Inception V3": "inception_v3",
+    "DenseNet": "densenet",
+#    "NASNet": "nasnet"
+
+#"Notice: if you used Transfer Learning, this interface supports the following SOTA models: `EfficientNet (B0-B7)` `EfficientNet V2` `MobileNet` `MobileNet V2` `ResNet50` `ResNet V2` `VGG16` `VGG19` `DenseNet`"
+
+}
+
+st.write("### Model Configuration")
+selected_model_label = st.selectbox("Which base model did you use?", options=list(MODEL_OPTIONS.keys()))
+selected_module_name = MODEL_OPTIONS[selected_model_label]
 
 col1, col2, col3 = st.columns([1, 12, 1])
 with col2:
