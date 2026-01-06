@@ -134,7 +134,7 @@ def load_leaderboard():
 # gsheets
 def save_leaderboard(df):
     conn = st.connection("gsheets", type=GSheetsConnection)
-    st.write('conneciton established')
+    # st.write('conneciton established')
     conn.update(worksheet="Sheet1", data=df)
 
 # def load_leaderboard():
